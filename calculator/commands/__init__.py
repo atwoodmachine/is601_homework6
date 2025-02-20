@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from decimal import Decimal
 
 class Command(ABC):
     @abstractmethod
@@ -14,7 +15,7 @@ class CommandHandler:
 
     def execute_command(self, command_name: str, *args):
         try:
-            self.commands[command_name].execute(*args)
+            self.commands[command_name].execute(self, *args)
         except KeyError:
             print(f"Command not recognized: {command_name}")
     
@@ -22,7 +23,7 @@ class CommandHandler:
         user_input = input.split()
         command_name = user_input[0]
         try:
-            args = list(map(int, user_input[1:]))
-            self.execute_command(command_name, args)
+            args = list(map(Decimal, user_input[1:]))
+            self.execute_command(command_name, *args)
         except ValueError:
             print("Error: invalid input") 
