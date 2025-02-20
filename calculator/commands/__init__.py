@@ -25,8 +25,6 @@ class CommandHandler:
         try:
             args = list(map(Decimal, user_input[1:]))
             self.execute_command(command_name, *args)
-        except ValueError:
-            print("Error: invalid input") 
         except InvalidOperation:
             print("Error: argument entered was not a valid number")
         except Exception as e:
