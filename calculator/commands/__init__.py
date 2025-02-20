@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 class Command(ABC):
     @abstractmethod
@@ -27,3 +27,5 @@ class CommandHandler:
             self.execute_command(command_name, *args)
         except ValueError:
             print("Error: invalid input") 
+        except InvalidOperation:
+            print("Error: argument entered was not a valid number")
