@@ -29,3 +29,5 @@ class CommandHandler:
             print("Error: invalid input") 
         except InvalidOperation:
             print("Error: argument entered was not a valid number")
+        except Exception as e:
+            print(f"Error: {e}")
