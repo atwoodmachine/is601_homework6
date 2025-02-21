@@ -1,10 +1,13 @@
 from decimal import Decimal
 import pytest
 from calculator import Calculator
+from calculator.commands import CommandHandler
 from calculator.plugins.add import AddCommand
 from calculator.plugins.subtract import SubtractCommand
 from calculator.plugins.divide import DivideCommand
 from calculator.plugins.multiply import MultiplyCommand
+from calculator.plugins.exit import ExitCommand
+from calculator.plugins.menu import MenuCommand
 
 def test_add_description(capfd):
     command = AddCommand()
@@ -37,3 +40,19 @@ def test_divide_description(capfd):
 def test_divide_usage(capfd):
     command = DivideCommand()
     assert command.usage() == "divide <operand_a> <operand_b>", "Divide usage should output 'divide <operand_a> <operand_b>'"
+
+def test_exit_description(capfd):
+    command = ExitCommand()
+    assert command.description() == "Quit the calculator program", "Exit description should output 'Quit the calculator program'"
+
+def test_exit_usage(capfd):
+    command = ExitCommand()
+    assert command.usage() == "exit", "Divide usage should output 'exit'"
+
+def test_menu_description(capfd):
+    command = MenuCommand(CommandHandler())
+    assert command.description() == "List all available commands", "Menu description should output 'List all available commands'"
+
+def test_menu_usage(capfd):
+    command = MenuCommand(CommandHandler())
+    assert command.usage() == "menu", "Menu usage should output 'menu'"
