@@ -34,3 +34,12 @@ def test_argument_type_error(capfd, monkeypatch):
         calc.start()
     output = capfd.readouterr()
     assert "Error: argument entered was not a valid number" in output.out
+
+def test_menu(capfd, monkeypatch):
+    inputs = iter(['menu', 'exit'])
+    monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+    calc = Calculator()
+    with pytest.raises(SystemExit) as e:
+        calc.start()
+    output = capfd.readouterr()
+    assert "---Available Calculator Commands---" in output.out
