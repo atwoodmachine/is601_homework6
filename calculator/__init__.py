@@ -31,8 +31,7 @@ class Calculator:
 
     def start(self):
         Calculator.load_plugins(self)
-        print("Calculator initialized\n")
-        print("Type 'exit' to quit\n")
+        print("Calculator initialized\nType 'exit' to quit. Type 'menu' to see available commands.\n")
 
         while True:
             self.command_handler.handle_user_input(input("> ").strip())

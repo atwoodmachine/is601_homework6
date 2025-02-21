@@ -5,6 +5,12 @@ class Command(ABC):
     @abstractmethod
     def execute(self):
         pass
+    @abstractmethod
+    def description(self):
+        pass
+    @abstractmethod
+    def usage(self):
+        pass
 
 class CommandHandler:
     def __init__(self):
