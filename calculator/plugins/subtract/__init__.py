@@ -9,4 +9,4 @@ class SubtractCommand(Command):
         return "Subtract two operands: a - b"
     
     def usage(self):
-        return "subtract <operand_a> <operand_b"
+        return "subtract <operand_a> <operand_b>"
