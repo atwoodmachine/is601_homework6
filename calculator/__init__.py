@@ -1,21 +1,29 @@
+import pkgutil
+import importlib
 from calculator.commands import CommandHandler
-from calculator.commands.add import AddCommand
-from calculator.commands.subtract import SubtractCommand
-from calculator.commands.multiply import MultiplyCommand
-from calculator.commands.divide import DivideCommand
-from calculator.commands.exit import ExitCommand
+from calculator.commands import Command
+
 
 class Calculator:
     def __init__(self):
         self.command_handler = CommandHandler()
 
-    def start(self):
-        self.command_handler.register_command("add", AddCommand)
-        self.command_handler.register_command("subtract", SubtractCommand)
-        self.command_handler.register_command("multiply", MultiplyCommand)
-        self.command_handler.register_command("divide", DivideCommand)
-        self.command_handler.register_command("exit", ExitCommand)
+    def load_plugins(self):
+        plugins_package = 'calculator.plugins'
 
+        for i, plugin_name, is_pkg in pkgutil.iter_modules([plugins_package.replace('.', '/')]):
+            if is_pkg:
+                plugin_module = importlib.import_module(f'{plugins_package}.{plugin_name}')
+                for item_name in dir(plugin_module):
+                    item = getattr(plugin_module, item_name)
+                    try:
+                        if issubclass(item, (Command)):
+                            self.command_handler.register_command(plugin_name, item())
+                    except TypeError:
+                        continue
+
+    def start(self):
+        Calculator.load_plugins(self)
         print("Calculator initialized\n")
         print("Type 'exit' to quit\n")
 

@@ -15,7 +15,7 @@ class CommandHandler:
 
     def execute_command(self, command_name: str, *args):
         try:
-            self.commands[command_name].execute(self, *args)
+            self.commands[command_name].execute(*args)
         except KeyError:
             print(f"Command not recognized: {command_name}")
     
