@@ -1,10 +1,10 @@
 from decimal import Decimal
 import pytest
 from calculator import Calculator
-from calculator.commands.add import AddCommand
-from calculator.commands.subtract import SubtractCommand
-from calculator.commands.divide import DivideCommand
-from calculator.commands.multiply import MultiplyCommand
+from calculator.plugins.add import AddCommand
+from calculator.plugins.subtract import SubtractCommand
+from calculator.plugins.divide import DivideCommand
+from calculator.plugins.multiply import MultiplyCommand
 
 def test_add_command(capfd):
     command = AddCommand()
