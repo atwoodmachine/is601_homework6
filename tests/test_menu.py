@@ -1,6 +1,5 @@
-from decimal import Decimal
-import pytest
-from calculator import Calculator
+#pylint: disable=missing-function-docstring
+'''Testing for commands return proper description and usage strings'''
 from calculator.commands import CommandHandler
 from calculator.plugins.add import AddCommand
 from calculator.plugins.subtract import SubtractCommand

@@ -1,11 +1,9 @@
 #pylint: disable=comparison-with-callable
 '''Configure faker testing for command line'''
-from decimal import Decimal
-from faker import Faker
-import pytest
 import io
 from contextlib import redirect_stdout
-from calculator import Calculator
+from decimal import Decimal
+from faker import Faker
 from calculator.plugins.add import AddCommand
 from calculator.plugins.subtract import SubtractCommand
 from calculator.plugins.divide import DivideCommand
@@ -32,7 +30,7 @@ def generate_test_data(num_records):
         command = operation_mappings[operation_name]
 
         if isinstance(command, DivideCommand) and b == 0:
-                b = Decimal("1")
+            b = Decimal("1")
 
         with io.StringIO() as buf, redirect_stdout(buf):
             command.execute(a, b)
