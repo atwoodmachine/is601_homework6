@@ -68,4 +68,8 @@ class Calculator:
         logging.info("Calculator initialized\nType 'exit' to quit. Type 'menu' to see available commands.\n")
 
         while True:
-            self.command_handler.handle_user_input(input("> ").strip())
+            try:
+                self.command_handler.handle_user_input(input("> ").strip())
+            except KeyboardInterrupt:
+                logging.info("Keyboard interrupt entered, now exiting program.")
+                sys.exit(0)  
