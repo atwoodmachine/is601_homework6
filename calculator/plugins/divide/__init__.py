@@ -1,3 +1,4 @@
+import logging
 from decimal import Decimal
 from calculator.commands import Command
 
@@ -6,6 +7,7 @@ class DivideCommand(Command):
         try:
             print(f"Result: {a / b}")
         except ZeroDivisionError:
+            logging.error("Divide by zero error")
             print("Math error: division by zero")
 
     def description(self):
